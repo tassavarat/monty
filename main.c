@@ -5,7 +5,6 @@ globals_t globals;
 int main(int argc, char *argv[])
 {
 	instruction_t opcodes[] = {
-		{"push", push},
 		{"pall", pall},
 		{NULL, NULL}
 	};
@@ -36,34 +35,55 @@ int main(int argc, char *argv[])
 		++line_number;
 		token = strtok(globals.lineptr, " \n");
 		/*
-		   printf("token start\n\n");
-		   printf("token is [%s]\n", token);
-		   */
+		printf("token start\n\n");
+		printf("token is [%s]\n", token);
+		*/
 		if (!token)
 			continue;
+		if (!strcmp(token, "push"))
+		{
+			/*
+			printf("Match found\n");
+			*/
+			token = strtok(NULL, " \n");
+			/*
+			printf("token match is [%s]\n", token);
+			*/
+			if (token)
+			{
+				for (j = 0; token[j]; ++j)
+				{
+					if (token[j] < '0' || token[j] > '9')
+					{
+						printf("L%d: usage: push integer\n", line_number);
+						free(globals.lineptr);
+						free_stack(stack);
+						fclose(globals.fp);
+						exit(EXIT_FAILURE);
+					}
+				}
+				globals.data = atoi(token);
+				push(&stack, line_number);
+				/*
+				printf("data is %d\n", globals.data);
+				printf("token middle is %s\n", token);
+				*/
+				continue;
+			}
+			else
+			{
+				printf("L%d: usage: push integer\n", line_number);
+				free(globals.lineptr);
+				free_stack(stack);
+				fclose(globals.fp);
+				exit(EXIT_FAILURE);
+			}
+		}
 		for (i = 0; opcodes[i].opcode; ++i)
 		{
 			if (!strcmp(token, opcodes[i].opcode))
 			{
 				token = strtok(NULL, " \n");
-				if (token)
-				{
-					for (j = 0; token[j]; ++j)
-					{
-						if (token[j] < '0' || token[j] > '9')
-						{
-							printf("L%d: usage: push integer\n", line_number);
-							free(globals.lineptr);
-							fclose(globals.fp);
-							exit(EXIT_FAILURE);
-						}
-					}
-					globals.data = atoi(token);
-					/*
-					   printf("data is %d\n", globals.data);
-					   printf("token middle is %s\n", token);
-					   */
-				}
 				opcodes[i].f(&stack, line_number);
 				break;
 			}
@@ -72,12 +92,13 @@ int main(int argc, char *argv[])
 		{
 			printf("L%d: unknown instruction %s\n", line_number, token);
 			free(globals.lineptr);
+			free_stack(stack);
 			fclose(globals.fp);
 			exit(EXIT_FAILURE);
 		}
 		/*
-		   printf("token after is [%s]\n", token);
-		   */
+		printf("token after is [%s]\n", token);
+		*/
 	}
 	free(globals.lineptr);
 	free_stack(stack);
