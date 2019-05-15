@@ -12,6 +12,8 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
 	if (error_type == 1)
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, globals.token);
+	if (error_type == 2)
+		fprintf(stderr, "Error: malloc failed\n");
 	free(globals.lineptr);
 	free_stack(*stack);
 	fclose(globals.fp);
@@ -70,7 +72,7 @@ void parse_arg(int argc, char *argv[])
  */
 void read_line(stack_t **stack)
 {
-	int j, len;
+	int i, len;
 	unsigned int line_number;
 	size_t n;
 
@@ -89,9 +91,13 @@ void read_line(stack_t **stack)
 			globals.token = strtok(NULL, " \n");
 			if (globals.token)
 			{
-				for (j = globals.token[0] == '-' ? 1 : 0; globals.token[j]; ++j)
-					if (globals.token[j] < '0' || globals.token[j] > '9')
+				for (i = 0; globals.token[i]; ++i)
+				{
+					if (globals.token[0] == '-')
+						++i;
+					else if (globals.token[i] < '0' || globals.token[i] > '9')
 						error_handle(stack, line_number, 0);
+				}
 				globals.data = atoi(globals.token);
 				push(stack, line_number);
 				continue;
