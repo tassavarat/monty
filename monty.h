@@ -4,7 +4,13 @@
 #include <stdlib.h>
 #include <stdio.h>
 #include <string.h>
-
+/**
+ * struct globals_s - struct contains global variables.
+ * @data: value to initialize nodes.
+ * @fp: a file pointer.
+ * @lineptr: pointer to a dynamic buffer.
+ * @token: a pointer to the next token.
+*/
 typedef struct globals_s
 {
 	int data;

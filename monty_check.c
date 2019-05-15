@@ -1,5 +1,11 @@
 #include "monty.h"
 
+/**
+ * error_handle - handle error message.
+ * @stack: pointer to a pointer of first node
+ * @line_number: the line number in the file.
+ * @error_type: value specifying error type.
+ */
 void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 {
 	if (error_type == 0)
@@ -11,6 +17,12 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 	fclose(globals.fp);
 	exit(EXIT_FAILURE);
 }
+
+/**
+ * check_op - function determines  which opcodes shoulb be called.
+ * @stack: pointer to a pointer of first node
+ * @line_number: the line number in the file.
+ */
 void check_op(stack_t **stack, unsigned int line_number)
 {
 	instruction_t opcodes[] = {
@@ -31,6 +43,12 @@ void check_op(stack_t **stack, unsigned int line_number)
 	if (!opcodes[i].opcode)
 		error_handle(stack, line_number, 1);
 }
+
+/**
+ * parse_arg - parse the arguments.
+ * @argc: numbers of arguments.
+ * @argv: pointer to an array of string.
+ */
 void parse_arg(int argc, char *argv[])
 {
 	if (argc != 2)
@@ -45,6 +63,11 @@ void parse_arg(int argc, char *argv[])
 		exit(EXIT_FAILURE);
 	}
 }
+
+/**
+ * read_line - read and parse lines from a file.
+ * @stack: pointer to a pointer of first node.
+ */
 void read_line(stack_t **stack)
 {
 	int j, len;

@@ -1,11 +1,10 @@
 #include "monty.h"
 
 /**
- * add_dnodeint - Adds a new node at the beginning of a list
- * @stack: Pointer to pointer of first node
- * @n: Integer to store in node
+ * push - Adds a new node at the beginning of a list
+ * @stack: Pointer to pointer of first node.
+ * @line_number: the line number in the file.
  *
- * Return: Address of new element or NULL on failure
  */
 void push(stack_t **stack, unsigned int line_number)
 {
@@ -31,10 +30,9 @@ void push(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * print_dlistint - Prints all elements of a linked list
- * @h: Pointer to first node of linked list
- *
- * Return: Number of nodes
+ * pall - Prints all elements of a linked list
+ * @stack: Pointer to pointer to first node of linked list
+ * @line_number: the line number in the file
  */
 void pall(stack_t **stack, unsigned int line_number)
 {
@@ -50,8 +48,8 @@ void pall(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * free_dlistint - Frees a list
- * @head: Pointer to list being freed
+ * free_stack - Frees a list
+ * @stack: Pointer to pointer of first node.
  */
 void free_stack(stack_t *stack)
 {
