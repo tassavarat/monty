@@ -9,7 +9,7 @@ typedef struct globals_s
 {
 	int data;
 	FILE *fp;
-	char *lineptr;
+	char *lineptr, *token;
 } globals_t;
 
 extern globals_t globals;
@@ -48,5 +48,11 @@ typedef struct instruction_s
 void push(stack_t **stack, unsigned int line_number);
 void pall(stack_t **stack, unsigned int line_number);
 void free_stack(stack_t *stack);
+
+/* monty_check */
+void error_handle(stack_t **stack, unsigned int line_number, int error_type);
+void check_op(stack_t **stack, unsigned int line_number);
+void parse_arg(int argc, char *argv[]);
+void read_line(stack_t **stack);
 
 #endif /* MONTY_H */
