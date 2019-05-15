@@ -89,7 +89,7 @@ void read_line(stack_t **stack)
 			globals.token = strtok(NULL, " \n");
 			if (globals.token)
 			{
-				for (j = 0; globals.token[j]; ++j)
+				for (j = globals.token[0] == '-' ? 1 : 0; globals.token[j]; ++j)
 					if (globals.token[j] < '0' || globals.token[j] > '9')
 						error_handle(stack, line_number, 0);
 				globals.data = atoi(globals.token);
