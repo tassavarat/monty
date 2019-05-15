@@ -1,7 +1,5 @@
 #include "monty.h"
 
-int data;
-
 /**
  * add_dnodeint - Adds a new node at the beginning of a list
  * @stack: Pointer to pointer of first node
@@ -18,10 +16,12 @@ void push(stack_t **stack, unsigned int line_number)
 	if (!new)
 	{
 		printf("Error: malloc failed\n");
+		free(globals.lineptr);
+		fclose(globals.fp);
 		exit(EXIT_FAILURE);
 	}
 
-	new->n = data;
+	new->n = globals.data;
 	new->prev = NULL;
 	new->next = *stack;
 	if (*stack)
@@ -45,5 +45,21 @@ void pall(stack_t **stack, unsigned int line_number)
 	{
 		printf("%d\n", current->n);
 		current = current->next;
+	}
+}
+
+/**
+ * free_dlistint - Frees a list
+ * @head: Pointer to list being freed
+ */
+void free_stack(stack_t *stack)
+{
+	stack_t *current;
+
+	while (stack)
+	{
+		current = stack;
+		stack = stack->next;
+		free(current);
 	}
 }
