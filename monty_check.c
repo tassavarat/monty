@@ -10,9 +10,9 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 {
 	if (error_type == 0)
 		fprintf(stderr, "L%d: usage: push integer\n", line_number);
-	if (error_type == 1)
+	else if (error_type == 1)
 		fprintf(stderr, "L%d: unknown instruction %s\n", line_number, globals.token);
-	if (error_type == 2)
+	else if (error_type == 2)
 		fprintf(stderr, "Error: malloc failed\n");
 	free(globals.lineptr);
 	free_stack(*stack);
@@ -93,7 +93,7 @@ void read_line(stack_t **stack)
 			{
 				for (i = 0; globals.token[i]; ++i)
 				{
-					if (globals.token[0] == '-')
+					if (i == 0 && globals.token[0] == '-')
 						++i;
 					if (globals.token[i] < '0' || globals.token[i] > '9')
 						error_handle(stack, line_number, 0);
