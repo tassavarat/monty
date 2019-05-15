@@ -95,7 +95,7 @@ void read_line(stack_t **stack)
 				{
 					if (globals.token[0] == '-')
 						++i;
-					else if (globals.token[i] < '0' || globals.token[i] > '9')
+					if (globals.token[i] < '0' || globals.token[i] > '9')
 						error_handle(stack, line_number, 0);
 				}
 				globals.data = atoi(globals.token);
