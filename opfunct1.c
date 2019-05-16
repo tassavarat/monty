@@ -55,3 +55,18 @@ void free_stack(stack_t *stack)
 		free(current);
 	}
 }
+
+/**
+ * pint - function determines  which opcodes shoulb be called.
+ * @stack: pointer to a pointer of first node
+ * @line_number: the line number in the file.
+ */
+void pint(stack_t **stack, unsigned int line_number)
+{
+	if (!*stack)
+	{
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%d\n", (*stack)->n);
+}
