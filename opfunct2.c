@@ -11,7 +11,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 4);
+		error_handle(stack, line_number, 5);
 	num = (*stack)->n;
 	tmp = (*stack)->next;
 
@@ -29,7 +29,7 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 5);
+		error_handle(stack, line_number, 6);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
@@ -60,7 +60,7 @@ void sub(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 6);
+		error_handle(stack, line_number, 7);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
@@ -79,9 +79,9 @@ void divide(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 7);
-	if ((*stack)->n == 0)
 		error_handle(stack, line_number, 8);
+	if ((*stack)->n == 0)
+		error_handle(stack, line_number, 9);
 	tmp = *stack;
 	*stack = (*stack)->next;
 

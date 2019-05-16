@@ -67,6 +67,7 @@ void divide(stack_t **stack, unsigned int line_number);
 /* opfunct3 */
 void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
+void pchar(stack_t **stack, unsigned int line_number);
 
 /* monty_check */
 void error_handle(stack_t **stack, unsigned int line_number, int error_type);

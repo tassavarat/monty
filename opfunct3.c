@@ -10,7 +10,7 @@ void mul(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 9);
+		error_handle(stack, line_number, 10);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
@@ -28,10 +28,10 @@ void mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
-	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 10);
 	if ((*stack)->n == 0)
-		error_handle(stack, line_number, 8);
+		error_handle(stack, line_number, 9);
+	if (!*stack || !(*stack)->next)
+		error_handle(stack, line_number, 11);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
@@ -48,14 +48,8 @@ void mod(stack_t **stack, unsigned int line_number)
 void pchar(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
-	{
-		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		error_handle(stack, line_number, 12);
 	if ((*stack)->n < 0 || (*stack)->n > 127)
-	{
-		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		error_handle(stack, line_number, 13);
 	printf("%c\n", (*stack)->n);
 }

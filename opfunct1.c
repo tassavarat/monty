@@ -64,10 +64,7 @@ void free_stack(stack_t *stack)
 void pint(stack_t **stack, unsigned int line_number)
 {
 	if (!*stack)
-	{
-		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		error_handle(stack, line_number, 3);
 	printf("%d\n", (*stack)->n);
 }
 
@@ -81,7 +78,7 @@ void pop(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!(*stack))
-		error_handle(stack, line_number, 3);
+		error_handle(stack, line_number, 4);
 	tmp = *stack;
 
 	*stack = (*stack)->next;

@@ -15,21 +15,27 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 	else if (error_type == 2)
 		fprintf(stderr, "Error: malloc failed\n");
 	else if (error_type == 3)
-		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
+		fprintf(stderr, "L%d: can't pint, stack empty\n", line_number);
 	else if (error_type == 4)
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 	else if (error_type == 5)
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
 	else if (error_type == 6)
-		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 	else if (error_type == 7)
-		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't sub, stack too short\n", line_number);
 	else if (error_type == 8)
-		fprintf(stderr, "L%d: division by zero\n", line_number);
+		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 	else if (error_type == 9)
-		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+		fprintf(stderr, "L%d: division by zero\n", line_number);
 	else if (error_type == 10)
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+	else if (error_type == 11)
 		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
+	else if (error_type == 12)
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+	else if (error_type == 13)
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
 	free(globals.lineptr);
 	free_stack(*stack);
 	fclose(globals.fp);
@@ -54,6 +60,7 @@ void check_op(stack_t **stack, unsigned int line_number)
 		{"div", divide},
 		{"mul", mul},
 		{"mod", mod},
+		{"pchar", pchar},
 		{NULL, NULL}
 	};
 	int i;
