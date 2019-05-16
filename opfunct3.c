@@ -87,29 +87,15 @@ void pstr(stack_t **stack, unsigned int line_number)
  */
 void rotl(stack_t **stack, unsigned int line_number)
 {
-	stack_t *current, *tmp;
-	int num;
+	stack_t *tmp;
 	(void)line_number;
 
-	tmp = malloc(sizeof(stack_t));
-	if (!tmp)
-		error_handle(stack, line_number, 2);
-	num = (*stack)->n;
-	tmp->n = num;
-	tmp->next = NULL;
-	pop(stack, line_number);
-	current = *stack;
-	if (!*stack)
-	{
-		*stack = tmp;
-		tmp->prev = *stack;
-	}
-	else
-	{
-		while (current->next)
-			current = current->next;
-	}
-	if (current)
-		current->next = tmp;
-	tmp->prev = current;
+	tmp = *stack;
+	*stack = (*stack)->next;
+	while (tmp->next)
+		tmp = tmp->next;
+	tmp->next = (*stack)->prev;
+	(*stack)->prev->next = NULL;
+	(*stack)->prev->prev = tmp;
+	(*stack)->prev = NULL;
 }
