@@ -30,6 +30,7 @@ void check_op(stack_t **stack, unsigned int line_number)
 	instruction_t opcodes[] = {
 		{"pall", pall},
 		{"pint", pint},
+		{"pop", pop},
 		{NULL, NULL}
 	};
 	int i;
