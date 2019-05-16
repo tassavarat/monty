@@ -68,3 +68,24 @@ void sub(stack_t **stack, unsigned int line_number)
 	free(tmp);
 	(*stack)->prev = NULL;
 }
+
+/**
+ * divide - divides the second top node by the top node of the stack.
+ * @stack: Pointer to pointer to first node of linked list
+ * @line_number: the line number in the file
+ */
+void divide(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (!*stack || !(*stack)->next)
+		error_handle(stack, line_number, 7);
+	if ((*stack)->n == 0)
+		error_handle(stack, line_number, 8);
+	tmp = *stack;
+	*stack = (*stack)->next;
+
+	(*stack)->n = ((*stack)->n) / (tmp->n);
+	free(tmp);
+	(*stack)->prev = NULL;
+}
