@@ -37,3 +37,15 @@ void add(stack_t **stack, unsigned int line_number)
 	free(tmp);
 	(*stack)->prev = NULL;
 }
+
+/**
+ * nop - The opcode nop doesnt do anything.
+ * @stack: Pointer to pointer of first node.
+ * @line_number: the line number in the file.
+ *
+ */
+void nop(stack_t **stack, unsigned int line_number)
+{
+	(void)**stack;
+	(void)line_number;
+}
