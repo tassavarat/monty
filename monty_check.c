@@ -15,8 +15,10 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 	else if (error_type == 2)
 		fprintf(stderr, "Error: malloc failed\n");
 	else if (error_type == 3)
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+		fprintf(stderr, "L%d: can't pop an empty stack\n", line_number);
 	else if (error_type == 4)
+		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
+	else if (error_type == 5)
 		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
 	free(globals.lineptr);
 	free_stack(*stack);

@@ -11,7 +11,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 3);
+		error_handle(stack, line_number, 4);
 	num = (*stack)->n;
 	tmp = (*stack)->next;
 
@@ -29,7 +29,7 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-		error_handle(stack, line_number, 4);
+		error_handle(stack, line_number, 5);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
