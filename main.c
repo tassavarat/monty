@@ -16,6 +16,7 @@ int main(int argc, char *argv[])
 	stack = NULL;
 	parse_arg(argc, argv);
 	read_line(&stack);
+
 	free(globals.lineptr);
 	free_stack(stack);
 	fclose(globals.fp);
