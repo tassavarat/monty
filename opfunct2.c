@@ -85,7 +85,7 @@ void divide(stack_t **stack, unsigned int line_number)
 	tmp = *stack;
 	*stack = (*stack)->next;
 
-	(*stack)->n = ((*stack)->n) / (tmp->n);
+	(*stack)->n /= tmp->n;
 	free(tmp);
 	(*stack)->prev = NULL;
 }

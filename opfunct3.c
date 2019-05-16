@@ -35,7 +35,27 @@ void mod(stack_t **stack, unsigned int line_number)
 	tmp = *stack;
 	*stack = (*stack)->next;
 
-	(*stack)->n = ((*stack)->n) % (tmp->n);
+	(*stack)->n %= tmp->n;
 	free(tmp);
 	(*stack)->prev = NULL;
+}
+
+/**
+ * pchar - Prints the char at the top of the stack
+ * @stack: pointer to a pointer of first node
+ * @line_number: the line number in the file.
+ */
+void pchar(stack_t **stack, unsigned int line_number)
+{
+	if (!*stack)
+	{
+		fprintf(stderr, "L%d: can't pchar, stack empty\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	if ((*stack)->n < 0 || (*stack)->n > 127)
+	{
+		fprintf(stderr, "L%d: can't pchar, value out of range\n", line_number);
+		exit(EXIT_FAILURE);
+	}
+	printf("%c\n", (*stack)->n);
 }
