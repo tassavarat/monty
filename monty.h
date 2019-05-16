@@ -59,6 +59,7 @@ void pop(stack_t **stack, unsigned int line_number);
 
 /* opfunct2 */
 void swap(stack_t **stack, unsigned int line_number);
+void add(stack_t **stack, unsigned int line_number);
 
 /* monty_check */
 void error_handle(stack_t **stack, unsigned int line_number, int error_type);
