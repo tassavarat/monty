@@ -57,7 +57,7 @@ void free_stack(stack_t *stack)
 }
 
 /**
- * pint - function determines  which opcodes shoulb be called.
+ * pint - Prints the value at the top of the stack
  * @stack: pointer to a pointer of first node
  * @line_number: the line number in the file.
  */
@@ -71,7 +71,7 @@ void pint(stack_t **stack, unsigned int line_number)
 	printf("%d\n", (*stack)->n);
 }
 /**
- * pop - function determines  which opcodes shoulb be called.
+ * pop - Removes the top element of the stack
  * @stack: pointer to a pointer of first node
  * @line_number: the line number in the file.
 */

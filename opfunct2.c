@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * swap -  swaps the top two elements of the stack..
+ * swap - Swaps the top two elements of the stack
  * @stack: pointer to a pointer of first node
  * @line_number: the line number in the file.
  */
@@ -11,10 +11,7 @@ void swap(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-	{
-		fprintf(stderr, "L%d: can't swap, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		error_handle(stack, line_number, 3);
 	num = (*stack)->n;
 	tmp = (*stack)->next;
 
@@ -23,7 +20,7 @@ void swap(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * add - Prints all elements of a linked list
+ * add - Adds the top two elements of the stack
  * @stack: Pointer to pointer to first node of linked list
  * @line_number: the line number in the file
  */
@@ -32,10 +29,7 @@ void add(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 
 	if (!*stack || !(*stack)->next)
-	{
-		fprintf(stderr, "L%d: can't add, stack too short\n", line_number);
-		exit(EXIT_FAILURE);
-	}
+		error_handle(stack, line_number, 4);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
