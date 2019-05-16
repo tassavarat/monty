@@ -79,3 +79,37 @@ void pstr(stack_t **stack, unsigned int line_number)
 		printf("\n");
 	}
 }
+
+/**
+ * rotl - multiplies the second top element with the top element of the stack.
+ * @stack: Pointer to pointer to first node of linked list
+ * @line_number: the line number in the file
+ */
+void rotl(stack_t **stack, unsigned int line_number)
+{
+	stack_t *current, *tmp;
+	int num;
+	(void)line_number;
+
+	tmp = malloc(sizeof(stack_t));
+	if (!tmp)
+		error_handle(stack, line_number, 2);
+	num = (*stack)->n;
+	tmp->n = num;
+	tmp->next = NULL;
+	pop(stack, line_number);
+	current = *stack;
+	if (!*stack)
+	{
+		*stack = tmp;
+		tmp->prev = *stack;
+	}
+	else
+	{
+		while (current->next)
+			current = current->next;
+	}
+	if (current)
+		current->next = tmp;
+	tmp->prev = current;
+}

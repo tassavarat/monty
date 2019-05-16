@@ -69,11 +69,13 @@ void mul(stack_t **stack, unsigned int line_number);
 void mod(stack_t **stack, unsigned int line_number);
 void pchar(stack_t **stack, unsigned int line_number);
 void pstr(stack_t **stack, unsigned int line_number);
+void rotl(stack_t **stack, unsigned int line_number);
 
 /* monty_check */
 void error_handle(stack_t **stack, unsigned int line_number, int error_type);
 void check_op(stack_t **stack, unsigned int line_number);
 void parse_arg(int argc, char *argv[]);
 void read_line(stack_t **stack);
+
 
 #endif /* MONTY_H */
