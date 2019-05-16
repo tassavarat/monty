@@ -28,10 +28,10 @@ void mod(stack_t **stack, unsigned int line_number)
 {
 	stack_t *tmp;
 
-	if ((*stack)->n == 0)
-		error_handle(stack, line_number, 9);
 	if (!*stack || !(*stack)->next)
 		error_handle(stack, line_number, 11);
+	if ((*stack)->n == 0)
+		error_handle(stack, line_number, 9);
 	tmp = *stack;
 	*stack = (*stack)->next;
 
