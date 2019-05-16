@@ -109,7 +109,7 @@ void read_line(stack_t **stack)
 	{
 		++line_number;
 		globals.token = strtok(globals.lineptr, " \n");
-		if (!globals.token)
+		if (!globals.token || globals.token[0] == '#')
 			continue;
 		if (!strcmp(globals.token, "push"))
 		{
