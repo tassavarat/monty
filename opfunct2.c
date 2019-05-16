@@ -49,3 +49,22 @@ void nop(stack_t **stack, unsigned int line_number)
 	(void)**stack;
 	(void)line_number;
 }
+
+/**
+ * sub - subtracts the top element of the stack from the second top element.
+ * @stack: Pointer to pointer to first node of linked list
+ * @line_number: the line number in the file
+ */
+void sub(stack_t **stack, unsigned int line_number)
+{
+	stack_t *tmp;
+
+	if (!*stack || !(*stack)->next)
+		error_handle(stack, line_number, 6);
+	tmp = *stack;
+	*stack = (*stack)->next;
+
+	(*stack)->n -= tmp->n;
+	free(tmp);
+	(*stack)->prev = NULL;
+}
