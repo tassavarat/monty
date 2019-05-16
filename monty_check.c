@@ -26,6 +26,10 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 		fprintf(stderr, "L%d: can't div, stack too short\n", line_number);
 	else if (error_type == 8)
 		fprintf(stderr, "L%d: division by zero\n", line_number);
+	else if (error_type == 9)
+		fprintf(stderr, "L%d: can't mul, stack too short\n", line_number);
+	else if (error_type == 10)
+		fprintf(stderr, "L%d: can't mod, stack too short\n", line_number);
 	free(globals.lineptr);
 	free_stack(*stack);
 	fclose(globals.fp);
@@ -48,6 +52,8 @@ void check_op(stack_t **stack, unsigned int line_number)
 		{"nop", nop},
 		{"sub", sub},
 		{"div", divide},
+		{"mul", mul},
+		{"mod", mod},
 		{NULL, NULL}
 	};
 	int i;
