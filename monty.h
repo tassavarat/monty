@@ -73,13 +73,13 @@ void rotl(stack_t **stack, unsigned int line_number);
 
 /* opfunct4 */
 void rotr(stack_t **stack, unsigned int line_number);
+void push_q(stack_t **stack, unsigned int line_number);
 
 /* monty_check */
 void error_handle(stack_t **stack, unsigned int line_number, int error_type);
 void check_op(stack_t **stack, unsigned int line_number);
 void parse_arg(int argc, char *argv[]);
 void read_line(stack_t **stack);
-void push_q(stack_t **stack, unsigned int line_number);
-
+void parse_num(stack_t **stack, unsigned int line_number);
 
 #endif /* MONTY_H */

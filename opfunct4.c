@@ -21,3 +21,34 @@ void rotr(stack_t **stack, unsigned int line_number)
 		tmp->next = NULL;
 	}
 }
+
+/**
+ * push_q - Adds a new node at the end of a list
+ * @stack: Pointer to pointer of first node.
+ * @line_number: the line number in the file.
+ *
+ */
+void push_q(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new, *current;
+
+	current = *stack;
+	new = malloc(sizeof(stack_t));
+	if (!new)
+		error_handle(stack, line_number, 2);
+
+	new->n = globals.data;
+	new->next = NULL;
+	if (!*stack)
+	{
+		new->prev = NULL;
+		*stack = new;
+	}
+	else
+	{
+		while (current->next)
+			current = current->next;
+		new->prev = current;
+		current->next = new;
+	}
+}

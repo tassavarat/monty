@@ -107,15 +107,11 @@ void parse_arg(int argc, char *argv[])
  */
 void read_line(stack_t **stack)
 {
-	int i, len;
-	int dtype;
+	int len, dtype;
 	unsigned int line_number;
 	size_t n;
 
-	len = 0;
-	dtype = 0;
-	line_number = 0;
-	n = 0;
+	len = dtype = line_number = n = 0;
 	globals.lineptr = NULL;
 	while ((len = getline(&globals.lineptr, &n, globals.fp)) != EOF)
 	{
@@ -138,13 +134,7 @@ void read_line(stack_t **stack)
 			globals.token = strtok(NULL, " \n");
 			if (globals.token)
 			{
-				for (i = 0; globals.token[i]; ++i)
-				{
-					if (i == 0 && globals.token[0] == '-')
-						++i;
-					if (globals.token[i] < '0' || globals.token[i] > '9')
-						error_handle(stack, line_number, 0);
-				}
+				parse_num(stack, line_number);
 				globals.data = atoi(globals.token);
 				if (!dtype)
 					push(stack, line_number);
@@ -160,32 +150,19 @@ void read_line(stack_t **stack)
 }
 
 /**
- * push_q - Adds a new node at the end of a list
- * @stack: Pointer to pointer of first node.
+ * parse_num - Checks if string contains number
+ * @stack: pointer to a pointer of first node
  * @line_number: the line number in the file.
- *
  */
-void push_q(stack_t **stack, unsigned int line_number)
+void parse_num(stack_t **stack, unsigned int line_number)
 {
-	stack_t *new, *current;
+	int i;
 
-	current = *stack;
-	new = malloc(sizeof(stack_t));
-	if (!new)
-		error_handle(stack, line_number, 2);
-
-	new->n = globals.data;
-	new->next = NULL;
-	if (!*stack)
+	for (i = 0; globals.token[i]; ++i)
 	{
-		new->prev = NULL;
-		*stack = new;
-	}
-	else
-	{
-		while (current->next)
-			current = current->next;
-		new->prev = current;
-		current->next = new;
+		if (i == 0 && globals.token[0] == '-')
+			++i;
+		if (globals.token[i] < '0' || globals.token[i] > '9')
+			error_handle(stack, line_number, 0);
 	}
 }
