@@ -13,11 +13,12 @@ void rotr(stack_t **stack, unsigned int line_number)
 	if ((*stack) && (*stack)->next)
 	{
 		tmp = *stack;
-		while (tmp->next)
+		while (tmp->next->next)
 			tmp = tmp->next;
 		(*stack)->prev = tmp->next;
-		tmp->next->next = *stack;
 		tmp->next->prev = NULL;
+		tmp->next->next = *stack;
 		tmp->next = NULL;
+		*stack = (*stack)->prev;
 	}
 }
