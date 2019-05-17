@@ -90,7 +90,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 	(void)line_number;
 
-	if ((*stack)->next)
+	if ((*stack) && (*stack)->next)
 	{
 		tmp = *stack;
 		*stack = (*stack)->next;
