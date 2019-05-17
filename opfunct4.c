@@ -1,7 +1,7 @@
 #include "monty.h"
 
 /**
- * rotr - Rotates the stack to the top.
+ * rotr - Rotates the stack to the bottom
  * @stack: Pointer to pointer to first node of linked list
  * @line_number: the line number in the file
  */
@@ -25,9 +25,8 @@ void rotr(stack_t **stack, unsigned int line_number)
 
 /**
  * push_q - Adds a new node at the end of a list
- * @stack: Pointer to pointer of first node.
- * @line_number: the line number in the file.
- *
+ * @stack: Pointer to pointer of first node
+ * @line_number: Current line number
  */
 void push_q(stack_t **stack, unsigned int line_number)
 {
