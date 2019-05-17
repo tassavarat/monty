@@ -101,13 +101,4 @@ void rotl(stack_t **stack, unsigned int line_number)
 		(*stack)->prev->prev = tmp;
 		(*stack)->prev = NULL;
 	}
-	/*
-	   printf("stack->next is %d\n", (*stack)->next->n);
-	   if (!(*stack)->prev)
-	   printf("stack->prev is NULL\n");
-	   printf("tmp->next is %d\n", tmp->next->n);
-	   printf("tmp->prev is %d\n", tmp->prev->n);
-	   if (!tmp->next->next)
-	   printf("tmp->next->next is NULL\n");
-	   */
 }
