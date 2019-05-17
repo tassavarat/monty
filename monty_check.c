@@ -107,10 +107,12 @@ void parse_arg(int argc, char *argv[])
 void read_line(stack_t **stack)
 {
 	int i, len;
+	int dtype;
 	unsigned int line_number;
 	size_t n;
 
 	len = 0;
+	dtype = 0;
 	line_number = 0;
 	n = 0;
 	globals.lineptr = NULL;
@@ -120,6 +122,16 @@ void read_line(stack_t **stack)
 		globals.token = strtok(globals.lineptr, " \n");
 		if (!globals.token || globals.token[0] == '#')
 			continue;
+		if (!strcmp(globals.token, "stack"))
+		{
+			dtype = 0;
+			continue;
+		}
+		else if (!strcmp(globals.token, "queue"))
+		{
+			dtype = 1;
+			continue;
+		}
 		if (!strcmp(globals.token, "push"))
 		{
 			globals.token = strtok(NULL, " \n");
@@ -133,12 +145,46 @@ void read_line(stack_t **stack)
 						error_handle(stack, line_number, 0);
 				}
 				globals.data = atoi(globals.token);
-				push(stack, line_number);
+				if (!dtype)
+					push(stack, line_number);
+				else
+					push_q(stack, line_number);
 				continue;
 			}
 			else
 				error_handle(stack, line_number, 0);
 		}
 		check_op(stack, line_number);
+	}
+}
+
+/**
+ * push_q - Adds a new node at the end of a list
+ * @stack: Pointer to pointer of first node.
+ * @line_number: the line number in the file.
+ *
+ */
+void push_q(stack_t **stack, unsigned int line_number)
+{
+	stack_t *new, *current;
+
+	current = *stack;
+	new = malloc(sizeof(stack_t));
+	if (!new)
+		error_handle(stack, line_number, 2);
+
+	new->n = globals.data;
+	new->next = NULL;
+	if (!*stack)
+	{
+		new->prev = NULL;
+		*stack = new;
+	}
+	else
+	{
+		while (current->next)
+			current = current->next;
+		new->prev = current;
+		current->next = new;
 	}
 }

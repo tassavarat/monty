@@ -76,6 +76,7 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type);
 void check_op(stack_t **stack, unsigned int line_number);
 void parse_arg(int argc, char *argv[]);
 void read_line(stack_t **stack);
+void push_q(stack_t **stack, unsigned int line_number);
 
 
 #endif /* MONTY_H */
