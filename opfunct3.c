@@ -81,7 +81,7 @@ void pstr(stack_t **stack, unsigned int line_number)
 }
 
 /**
- * rotl - multiplies the second top element with the top element of the stack.
+ * rotl - Rotates the stack to the top.
  * @stack: Pointer to pointer to first node of linked list
  * @line_number: the line number in the file
  */
@@ -90,7 +90,7 @@ void rotl(stack_t **stack, unsigned int line_number)
 	stack_t *tmp;
 	(void)line_number;
 
-	if (*stack && (*stack)->next)
+	if ((*stack) && (*stack)->next)
 	{
 		tmp = *stack;
 		*stack = (*stack)->next;
@@ -101,4 +101,13 @@ void rotl(stack_t **stack, unsigned int line_number)
 		(*stack)->prev->prev = tmp;
 		(*stack)->prev = NULL;
 	}
+	/*
+	   printf("stack->next is %d\n", (*stack)->next->n);
+	   if (!(*stack)->prev)
+	   printf("stack->prev is NULL\n");
+	   printf("tmp->next is %d\n", tmp->next->n);
+	   printf("tmp->prev is %d\n", tmp->prev->n);
+	   if (!tmp->next->next)
+	   printf("tmp->next->next is NULL\n");
+	   */
 }
