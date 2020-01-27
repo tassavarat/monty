@@ -43,7 +43,7 @@ void error_handle(stack_t **stack, unsigned int line_number, int error_type)
 }
 
 /**
- * check_op - function determines  which opcodes shoulb be called.
+ * check_op - function determines  which opcodes should be called.
  * @stack: pointer to a pointer of first node
  * @line_number: the line number in the file.
  */
